@@ -17,20 +17,31 @@ void MainWindow::loginCheck()
 {
     std::string user = static_cast<std::string>(ui->loginEdit->text().toStdString());
     std::string password = static_cast<std::string>(ui->passwordEdit->text().toStdString());
-    std::string email = static_cast<std::string>(ui->emailEdit->text().toStdString());
-    psql->create_user(user, password, email);
-    window = new AccessWindow("Your login is correct");
+    QString message = "Your login is not correct";
+    if (psql->check_user(user, password)) {
+        ui->label_2->setText("Hello, " + ui->loginEdit->text());
+        message = "Your login is correct";
+    }
+    window = new AccessWindow(message);
     window->show();
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::registration()
 {
-    loginCheck();
+    std::string user = static_cast<std::string>(ui->loginEdit->text().toStdString());
+    std::string password = static_cast<std::string>(ui->passwordEdit->text().toStdString());
+    std::string email = static_cast<std::string>(ui->emailEdit->text().toStdString());
+    psql->create_user(user, password, email);
+    window = new AccessWindow("Your account was created");
+    window->show();
 }
 
 void MainWindow::on_passwordEdit_returnPressed()
 {
-    loginCheck();
+    if (ui->emailEdit->text() == "")
+        loginCheck();
+    else
+        registration();
 }
 
 void MainWindow::on_loginEdit_returnPressed()
@@ -41,4 +52,14 @@ void MainWindow::on_loginEdit_returnPressed()
 void MainWindow::on_emailEdit_returnPressed()
 {
     ui->passwordEdit->selectedText();
+}
+
+void MainWindow::on_loginButton_clicked()
+{
+    loginCheck();
+}
+
+void MainWindow::on_registerButton_clicked()
+{
+    registration();
 }

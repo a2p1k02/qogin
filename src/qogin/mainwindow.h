@@ -20,13 +20,15 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
-
     void on_passwordEdit_returnPressed();
 
     void on_loginEdit_returnPressed();
 
     void on_emailEdit_returnPressed();
+
+    void on_loginButton_clicked();
+
+    void on_registerButton_clicked();
 
 private:
     Ui::MainWindow* ui;
@@ -34,5 +36,6 @@ private:
     PostgreSQL* psql;
 
     void loginCheck();
+    void registration();
 };
 #endif // MAINWINDOW_H

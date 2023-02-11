@@ -15,7 +15,7 @@ public:
 
     void create_user(std::string name, std::string password, std::string email);
     void delete_user(std::string name);
-    void check_user(std::string name, std::string password);
+    bool check_user(std::string name, std::string password);
 };
 
 #endif // POSTGRESQL_H

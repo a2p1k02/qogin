@@ -1,4 +1,5 @@
 #include "postgresql.h"
+#include <iostream>
 
 PostgreSQL::PostgreSQL(std::string dbname)
 {
@@ -16,6 +17,17 @@ void PostgreSQL::create_db()
             ");";
     work.exec(query);
     work.commit();
+}
+
+bool PostgreSQL::check_user(std::string name, std::string password)
+{
+    pqxx::nontransaction n(*conn);
+    query = "select exists(select 1 from users where name='" + name + "' and password = '" + password + "');";
+    pqxx::result r(n.exec(query));
+    for (const auto& x : r)
+        if (x[0].as<std::string>() == "t")
+            return true;
+    return false;
 }
 
 void PostgreSQL::create_user(std::string name, std::string password, std::string email)
