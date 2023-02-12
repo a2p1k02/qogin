@@ -14,6 +14,6 @@ AccessWindow::~AccessWindow()
 
 void AccessWindow::on_okButton_clicked()
 {
-    delete this;
+    this->close();
 }
 

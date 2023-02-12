@@ -13,6 +13,8 @@ public:
 
     void create_db();
 
+    void show_users();
+
     void create_user(std::string name, std::string password, std::string email);
     void delete_user(std::string name);
     bool check_user(std::string name, std::string password);

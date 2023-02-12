@@ -22,6 +22,9 @@ set(PROJECT_SOURCES
         src/qogin/accesswindow.ui
         src/qogin/postgresql.h
         src/qogin/postgresql.cpp
+        src/qogin/controlform.h
+        src/qogin/controlform.cpp
+        src/qogin/controlform.ui
 )
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lpqxx -lpq -lstdc++")

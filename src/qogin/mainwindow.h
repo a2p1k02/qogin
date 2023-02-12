@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "accesswindow.h"
+#include "controlform.h"
 #include "postgresql.h"
 
 QT_BEGIN_NAMESPACE
@@ -22,10 +23,6 @@ public:
 private slots:
     void on_passwordEdit_returnPressed();
 
-    void on_loginEdit_returnPressed();
-
-    void on_emailEdit_returnPressed();
-
     void on_loginButton_clicked();
 
     void on_registerButton_clicked();
@@ -33,6 +30,7 @@ private slots:
 private:
     Ui::MainWindow* ui;
     AccessWindow* window;
+    ControlForm* control;
     PostgreSQL* psql;
 
     void loginCheck();
